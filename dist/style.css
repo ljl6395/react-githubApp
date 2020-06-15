@@ -6,9 +6,9 @@
 }
 a {
     color: black;
+    cursor: pointer;
 }
 html, body {
     min-height: 100vh;
-    
 }
 
