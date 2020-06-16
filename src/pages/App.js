@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Header from './components/Header'
-import Popular from './components/Popular'
+import Popular from './Popular'
+import Battle from './Battle'
 
 export default class App extends Component {
   state = {
-    page: 'pop'
+    page: 'pop',
   }
 
   changePage = page => {
@@ -16,13 +16,25 @@ export default class App extends Component {
   render() {
     const { page } = this.state
 
+    const buttonStyle = {
+      cursor: "pointer",
+      padding: '0 5px',
+      borderRadius: '3px',
+    }
+
     return (
       <>
-        <div>
-          <Header changePage={page => this.changePage(page)} />
+        <div style={{ maxWidth: "1200px", margin: "0 auto", marginTop: "50px", fontSize: "18px" }} >
+          <span style={{ ...buttonStyle, background: page === 'pop' && '#ebebeb' }} onClick={() => this.changePage('pop')} >
+            Popular
+          </span>
+          <span style={{ ...buttonStyle, background: page === 'bat' && '#ebebeb' }} onClick={() => this.changePage('bat')} >
+            Battle
+          </span>
         </div>
         <div>
           {page === 'pop' && <Popular />}
+          {page === 'bat' && <Battle />}
         </div>
       </>
     )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import PopCard from './PopCard';
+import PopCard from './components/PopCard';
 import InfiniteScroll from "react-infinite-scroller";
 
 const url = [
