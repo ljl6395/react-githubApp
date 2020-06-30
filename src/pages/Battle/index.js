@@ -4,31 +4,31 @@ import BatFinal from './BatFinal';
 
 class Battle extends Component {
   state = {
-    page: 'desc'
+    page: 'desc',
   }
 
-  showFinal = (dataOne, dataTwo) => {
+  showFinal = (one, two) => {
     this.setState({
       page: 'final',
-      dataOne,
-      dataTwo,
-    })
+      dataOne: one,
+      dataTwo: two,
+    });
   }
 
   handleReset = () => {
     this.setState({
-      page: 'desc'
-    })
+      page: 'desc',
+    });
   }
 
   render() {
-    const { page, dataOne, dataTwo } = this.state
+    const { page, dataOne, dataTwo } = this.state;
 
     return (
       <>
-        {page === 'desc' ?
-          <BatDesc showFinal={(dataOne, dataTwo) => this.showFinal(dataOne, dataTwo)} /> :
-          <BatFinal dataOne={dataOne} dataTwo={dataTwo} reset={this.handleReset} />}
+        {page === 'desc'
+          ? <BatDesc showFinal={(one, two) => this.showFinal(one, two)} />
+          : <BatFinal dataOne={dataOne} dataTwo={dataTwo} reset={this.handleReset} />}
       </>
     );
   }

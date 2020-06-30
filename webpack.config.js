@@ -1,8 +1,9 @@
-const path = require('path')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (env, argv) {
-  const isEnvDevelopment = argv.mode === 'development' || !argv.mode
-  const isEnvProduction = argv.mode === 'production'
+  const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
+  const isEnvProduction = argv.mode === 'production';
 
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
@@ -10,16 +11,24 @@ module.exports = function (env, argv) {
     entry: './src/index.js',
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
     },
     module: {
       rules: [
-        { 
-          test: /\.js$/, 
+        {
+          test: /\.js$/,
           exclude: /node_modules/,
-          use: 'babel-loader' 
-        }
-      ]
-    }
-  }
-}
+          use: 'babel-loader',
+        },
+      ],
+    },
+    devServer: {
+      contentBase: './dist',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: 'public/index.html',
+      }),
+    ],
+  };
+};
