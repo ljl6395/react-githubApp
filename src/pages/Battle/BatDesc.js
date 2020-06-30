@@ -86,7 +86,7 @@ class BatDesc extends Component {
               <li key={item.title} style={{ width: 260 }}>
                 <p style={{ textAlign: 'center', fontSize: 24 }}>{item.title}</p>
                 <div style={instrLiStyle}>
-                  <i class={item.icon} aria-hidden="true" style={{ marginTop: 75, color: item.color }} />
+                  <i className={item.icon} aria-hidden="true" style={{ marginTop: 75, color: item.color }} />
                 </div>
               </li>
             )}

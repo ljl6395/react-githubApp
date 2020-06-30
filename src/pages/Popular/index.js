@@ -128,7 +128,7 @@ class Popular extends Component {
           loader={null}
         >
           <ul style={contentStyle}>
-            {list.map((item, key) => <PopCard item={item} index={key} />)}
+            {list.map((item, key) => <PopCard item={item} index={key} key={key} />)}
           </ul>
           {fetching && <div style={{ fontSize: 22, textAlign: 'center' }}>Loading...</div>}
         </InfiniteScroll>
