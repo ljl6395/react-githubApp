@@ -22,5 +22,6 @@ module.exports = {
     'react/button-has-type': 0,
     'no-shadow': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
+    'import/no-extraneous-dependencies': 0,
   },
 };

@@ -1,5 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
 
 // eslint-disable-next-line func-names
 module.exports = function (env, argv) {
@@ -14,22 +15,31 @@ module.exports = function (env, argv) {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+    devServer: {
+      contentBase: './dist',
+      hot: true,
+    },
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
+          enforce: 'pre',
           use: 'babel-loader',
         },
       ],
     },
-    devServer: {
-      contentBase: './dist',
-    },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: 'public/index.html',
-      }),
+      // new HtmlWebpackPlugin({
+      //   template: 'public/index.html',
+      // }),
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin()
     ],
+    resolve: {
+      alias: {
+        '@': path.resolve('src')
+      }
+    }
   };
 };
