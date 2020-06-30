@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// eslint-disable-next-line func-names
 module.exports = function (env, argv) {
   const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
   const isEnvProduction = argv.mode === 'production';
