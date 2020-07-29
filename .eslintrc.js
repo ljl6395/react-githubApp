@@ -23,5 +23,6 @@ module.exports = {
     'no-shadow': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': 0,
   },
 };

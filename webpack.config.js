@@ -1,5 +1,5 @@
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
 
 // eslint-disable-next-line func-names
@@ -30,9 +30,10 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
-      // new HtmlWebpackPlugin({
-      //   template: 'public/index.html',
-      // }),
+      new HtmlWebpackPlugin({
+        title: 'Github热门项目',
+        template: 'public/index.html',
+      }),
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin()
     ],
