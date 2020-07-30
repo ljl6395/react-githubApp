@@ -10,6 +10,14 @@ class App extends Component {
     page: "pop",
   };
 
+  componentDidMount() {
+    if (window.location.href.includes("/battle")) {
+      this.setState({
+        page: "bat",
+      });
+    }
+  }
+
   handleActive = (page) => {
     this.setState({
       page,

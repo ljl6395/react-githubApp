@@ -59,6 +59,14 @@ class Popular extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    const { search } = this.props.location;
+    if (prevProps.location.search !== search && !search) {
+      console.log("hello");
+      this.fetch(url[0].url);
+    }
+  }
+
   handleClick = (item) => {
     this.setState({
       url: item.url,
