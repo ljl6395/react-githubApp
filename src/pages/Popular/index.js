@@ -186,13 +186,12 @@ class Popular extends Component {
             ))}
           </ul>
           {fetching && <Loading />}
+          {errMsg && (
+            <div style={{ textAlign: "center", marginTop: 50, color: "red" }}>
+              {errMsg}
+            </div>
+          )}
         </InfiniteScroll>
-
-        {errMsg && (
-          <div style={{ textAlign: "center", marginTop: 50, color: "red" }}>
-            {errMsg}
-          </div>
-        )}
       </>
     );
   }
