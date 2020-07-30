@@ -24,5 +24,10 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
+    'react/jsx-no-duplicate-props': 0,
+    'react/jsx-boolean-value': 0,
+    'object-shorthand': 0,
+    'array-callback-return': 0,
+    'prefer-destructuring': 0,
   },
 };

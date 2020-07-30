@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // eslint-disable-next-line func-names
 module.exports = function (env, argv) {
@@ -15,10 +16,6 @@ module.exports = function (env, argv) {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
-    devServer: {
-      contentBase: './dist',
-      hot: true,
-    },
     module: {
       rules: [
         {
@@ -31,7 +28,7 @@ module.exports = function (env, argv) {
           test: /\.css$/,
           include: [path.resolve(__dirname, 'src/styles'), /node_modules/],
           use: [
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'postcss-loader'
           ]
@@ -40,7 +37,7 @@ module.exports = function (env, argv) {
           test: /\.css$/,
           exclude: [path.resolve(__dirname, 'src/styles'), /node_modules/],
           use: [
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader?modules',
             'postcss-loader'
           ]
@@ -73,7 +70,7 @@ module.exports = function (env, argv) {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
           loader: "url-loader",
           options: {
-            limit: 10000
+          limit: 10000
           }
         }
       ],
@@ -83,12 +80,32 @@ module.exports = function (env, argv) {
         title: 'Github热门项目',
         template: 'public/index.html',
       }),
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin()
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:8].css',
+        chunkFilename: '[name].[contenthash:8].chunk.css',
+      }),
+      new BundleAnalyzerPlugin()
     ],
     resolve: {
       alias: {
         '@': path.resolve('src')
+      }
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks:2,
+            priority: -20,
+            reuseExistingChunk: true,
+          }
+        }
       }
     }
   };

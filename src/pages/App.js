@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader/root";
+import { HashRouter, Route, Link, Switch } from "react-router-dom";
 import Popular from "./Popular";
-import Battle from "./Battle";
+import BatDesc from "./Battle/BatDesc";
+import BatFinal from "./Battle/BatFinal";
 
 class App extends Component {
   state = {
     page: "pop",
   };
 
-  changePage = (page) => {
+  handleActive = (page) => {
     this.setState({
       page,
     });
@@ -18,7 +20,7 @@ class App extends Component {
     const { page } = this.state;
 
     return (
-      <>
+      <HashRouter>
         <div
           style={{
             maxWidth: "1200px",
@@ -28,25 +30,30 @@ class App extends Component {
           }}
         >
           <span
-            style={{ background: page === "pop" && "#ebebeb" }}
             className="pbButton"
-            onClick={() => this.changePage("pop")}
+            onClick={() => this.handleActive("pop")}
+            className={page === "pop" ? "pbActive" : "pbButton"}
           >
-            Popular
+            <Link to="/popular">Popular</Link>
           </span>
           <span
-            style={{ background: page === "bat" && "#ebebeb" }}
             className="pbButton"
-            onClick={() => this.changePage("bat")}
+            onClick={() => this.handleActive("bat")}
+            className={page === "bat" ? "pbActive" : "pbButton"}
           >
-            Battle
+            <Link to="/battle">Battle</Link>
           </span>
         </div>
-        <div>
-          {page === "pop" && <Popular />}
-          {page === "bat" && <Battle />}
-        </div>
-      </>
+
+        <Switch>
+          <Route path="/" component={Popular} exact />
+          <Route exact={true} path="/popular" component={Popular} />
+          <Route>
+            <Route exact={true} path="/battle" component={BatDesc} />
+            <Route path="/battle/result" component={BatFinal} />
+          </Route>
+        </Switch>
+      </HashRouter>
     );
   }
 }

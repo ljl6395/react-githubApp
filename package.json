@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --config webpack.prod.js --mode production"
   },
   "husky": {
     "hooks": {
@@ -48,14 +48,17 @@
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
     "lint-staged": "^10.2.11",
+    "mini-css-extract-plugin": "^0.9.0",
     "normalize.css": "^8.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
+    "react-router-dom": "^5.2.0",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {

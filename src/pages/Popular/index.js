@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroller";
+import { NavLink } from "react-router-dom";
 import Loading from "@/components/Loading";
 import PopCard from "./components/PopCard";
 import styles from "./index.less";
@@ -40,7 +41,6 @@ const url = [
 
 class Popular extends Component {
   state = {
-    active: "All",
     url:
       "https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories",
     fetching: false,
@@ -50,12 +50,17 @@ class Popular extends Component {
   };
 
   componentDidMount() {
-    this.fetch(url[0].url);
+    const language = window.location.href.split("=")[1] || "All";
+
+    url.map((item) => {
+      if (item.title === language) {
+        this.fetch(item.url);
+      }
+    });
   }
 
   handleClick = (item) => {
     this.setState({
-      active: item.title,
       url: item.url,
     });
 
@@ -64,7 +69,9 @@ class Popular extends Component {
 
   fetch = async (url, page, concat) => {
     const { list } = this.state;
-    const finalUrl = page ? `${url}&page=${page}` : url;
+    const finalUrl = page
+      ? `${url}&page=${page}&per_page=10`
+      : `${url}&per_page=10`;
 
     if (this.state.url !== url) {
       await this.setState({
@@ -74,6 +81,7 @@ class Popular extends Component {
 
     this.setState({
       fetching: true,
+      errMsg: null,
     });
 
     try {
@@ -90,7 +98,11 @@ class Popular extends Component {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.log(e.response.statusText);
+
+      this.setState({
+        errMsg: e.response.statusText,
+      });
     }
 
     this.setState({
@@ -112,17 +124,14 @@ class Popular extends Component {
   };
 
   render() {
-    const { active, list, fetching } = this.state;
+    const { list, fetching, errMsg } = this.state;
+    const language = window.location.href.split("=")[1] || "All";
 
     const navBarStyle = {
       display: "flex",
       justifyContent: "center",
       marginTop: 20,
       fontSize: 20,
-    };
-    const activeStyle = {
-      color: "darkred",
-      textDecoration: "underline black",
     };
     const contentStyle = {
       display: "flex",
@@ -143,15 +152,23 @@ class Popular extends Component {
             <li
               key={item.title}
               style={{ padding: "0 5px" }}
-              className={active === item.title ? styles.active : "null"}
               onClick={() => this.handleClick(item)}
             >
-              <a style={active === item.title ? activeStyle : {}}>
+              <NavLink
+                className={language === item.title ? styles.active : "null"}
+                to={{ pathname: "/popular", search: `?language=${item.title}` }}
+              >
                 {item.title}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
+
+        {errMsg && (
+          <div style={{ textAlign: "center", marginTop: 50, color: "red" }}>
+            {errMsg}
+          </div>
+        )}
 
         {/* 列表 */}
         <InfiniteScroll
