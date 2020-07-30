@@ -17,12 +17,6 @@ class App extends Component {
   render() {
     const { page } = this.state;
 
-    const buttonStyle = {
-      cursor: "pointer",
-      padding: "0 5px",
-      borderRadius: "3px",
-    };
-
     return (
       <>
         <div
@@ -34,13 +28,15 @@ class App extends Component {
           }}
         >
           <span
-            style={{ ...buttonStyle, background: page === "pop" && "#ebebeb" }}
+            style={{ background: page === "pop" && "#ebebeb" }}
+            className="pbButton"
             onClick={() => this.changePage("pop")}
           >
             Popular
           </span>
           <span
-            style={{ ...buttonStyle, background: page === "bat" && "#ebebeb" }}
+            style={{ background: page === "bat" && "#ebebeb" }}
+            className="pbButton"
             onClick={() => this.changePage("bat")}
           >
             Battle

@@ -3,6 +3,7 @@ import axios from "axios";
 import InfiniteScroll from "react-infinite-scroller";
 import Loading from "@/components/Loading";
 import PopCard from "./components/PopCard";
+import styles from "./index.less";
 
 const url = [
   {
@@ -142,6 +143,7 @@ class Popular extends Component {
             <li
               key={item.title}
               style={{ padding: "0 5px" }}
+              className={active === item.title ? styles.active : "null"}
               onClick={() => this.handleClick(item)}
             >
               <a style={active === item.title ? activeStyle : {}}>
