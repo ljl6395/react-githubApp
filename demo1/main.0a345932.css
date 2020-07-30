@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+a {
+  color: black;
+  cursor: pointer;
+}
+html, body {
+  min-height: 100vh;
+}
+
+.pbButton {
+  cursor: pointer;
+  padding: 0 5px;
+  border-radius: 3px;
+}
+
+
+/*# sourceMappingURL=main.0a345932.css.map*/
