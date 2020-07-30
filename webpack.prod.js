@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');  
+const TerserPlugin = require('terser-webpack-plugin');
 
 // eslint-disable-next-line func-names
 module.exports = function (env, argv) {
@@ -13,7 +15,7 @@ module.exports = function (env, argv) {
     devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index.js',
     output: {
-      filename: 'bundle.js',
+      filename: '[name].[contenthash:8].js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -70,7 +72,7 @@ module.exports = function (env, argv) {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
           loader: "url-loader",
           options: {
-          limit: 10000
+            limit: 10000
           }
         }
       ],
@@ -92,6 +94,11 @@ module.exports = function (env, argv) {
       }
     },
     optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin(),
+        new OptimizeCSSAssetsPlugin(),
+      ],
       splitChunks: {
         chunks: 'all',
         name: true,
@@ -101,7 +108,7 @@ module.exports = function (env, argv) {
             priority: -10
           },
           default: {
-            minChunks:2,
+            minChunks: 2,
             priority: -20,
             reuseExistingChunk: true,
           }
