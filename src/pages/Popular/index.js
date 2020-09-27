@@ -119,16 +119,25 @@ class Popular extends Component {
   };
 
   getMore = async () => {
-    const { total, list, url, page, fetching } = this.state;
+    const { total, list, url, page, fetching, errMsg } = this.state;
 
-    if (total === list.length) return;
-    if (fetching) return;
+    if (total === list.length || fetching || errMsg) return;
 
     await this.setState({
       page: page + 1,
     });
 
     this.fetch(url, this.state.page, "concat");
+  };
+
+  handleGetMore = async () => {
+    const { page, url } = this.state;
+
+    await this.setState({
+      errMsg: null,
+    });
+
+    this.fetch(url, page, "concat");
   };
 
   render() {
@@ -188,7 +197,13 @@ class Popular extends Component {
           {fetching && <Loading />}
           {errMsg && (
             <div style={{ textAlign: "center", marginTop: 50, color: "red" }}>
-              {errMsg}
+              {errMsg},{" "}
+              <span
+                onClick={this.handleGetMore}
+                style={{ cursor: "pointer", color: "blue" }}
+              >
+                reload
+              </span>
             </div>
           )}
         </InfiniteScroll>
