@@ -12,6 +12,26 @@ html, body {
   min-height: 100vh;
 }
 
+.menu {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1400px) {
+  .menu {
+    max-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .menu {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+}
+
 .pbButton {
   cursor: pointer;
   padding: 0 5px;

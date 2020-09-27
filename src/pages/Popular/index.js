@@ -150,16 +150,6 @@ class Popular extends Component {
       marginTop: 20,
       fontSize: 20,
     };
-    const contentStyle = {
-      display: "flex",
-      flexWrap: "wrap",
-      flexDirection: "row",
-      flex: 1,
-      justifyContent: "space-between",
-      maxWidth: "1200px",
-      margin: "0 auto",
-      marginTop: "20px",
-    };
 
     return (
       <>
@@ -189,7 +179,7 @@ class Popular extends Component {
           hasMore={!fetching}
           loader={null}
         >
-          <ul style={contentStyle}>
+          <ul className={styles.contentStyle}>
             {list.map((item, key) => (
               <PopCard item={item} index={key} key={key} />
             ))}

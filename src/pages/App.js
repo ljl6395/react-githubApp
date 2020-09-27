@@ -29,14 +29,7 @@ class App extends Component {
 
     return (
       <HashRouter>
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            marginTop: "50px",
-            fontSize: "18px",
-          }}
-        >
+        <div className="menu">
           <span
             className="pbButton"
             onClick={() => this.handleActive("pop")}
