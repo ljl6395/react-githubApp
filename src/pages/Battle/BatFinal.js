@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import BatCard from "./components/BatCard";
 
 class BatFinal extends Component {
@@ -8,13 +9,32 @@ class BatFinal extends Component {
     dataTwo: {},
   };
 
-  componentDidMount() {
-    if (this.props.location.query) {
-      const { dataOne, dataTwo } = this.props.location.query;
+  async componentDidMount() {
+    const { location } = this.props;
+
+    if (location.query) {
+      const { dataOne, dataTwo } = location.query;
 
       this.setState({
         dataOne,
         dataTwo,
+      });
+    } else {
+      const { search } = location;
+
+      const player1 = search.split("player1=")[1].split("&")[0];
+      const player2 = search.split("player2=")[1];
+
+      const res1 = await axios.get(
+        `https://api.github.com/users/${player1}?client_id=YOUR_CLIENT_ID&client_secret=YOUR_SECRET_ID`
+      );
+      const res2 = await axios.get(
+        `https://api.github.com/users/${player2}?client_id=YOUR_CLIENT_ID&client_secret=YOUR_SECRET_ID`
+      );
+
+      this.setState({
+        dataOne: res1.data,
+        dataTwo: res2.data,
       });
     }
   }

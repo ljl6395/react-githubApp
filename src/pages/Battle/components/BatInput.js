@@ -156,7 +156,7 @@ class BatInput extends Component {
               disabled={!value.length || loading}
               onClick={this.handleSubmit}
             >
-              SUBMIT
+              {loading ? "loading..." : "SUBMIT"}
             </button>
           </div>
         )}

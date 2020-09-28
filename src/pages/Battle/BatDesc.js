@@ -64,14 +64,13 @@ class BatDesc extends Component {
           </ul>
         </section>
 
-        <section style={{ marginTop: 60 }}>
+        <section style={{ marginTop: 60, marginBottom: 60 }}>
           <p style={{ textAlign: "center", fontSize: 30 }}>Player</p>
           <ul className={styles.playerStyle}>
             <BatInput
               player="One"
               savePlayer={(data) => this.handleSave("One", data)}
             />
-            {/* <div className={styles.playerDiv} /> */}
             <BatInput
               player="Two"
               savePlayer={(data) => this.handleSave("Two", data)}
@@ -83,6 +82,7 @@ class BatDesc extends Component {
                 style={{ color: "white" }}
                 to={{
                   pathname: "/battle/result",
+                  search: `?player1=${dataOne.name}&player2=${dataTwo.name}`,
                   query: { dataOne: dataOne, dataTwo: dataTwo },
                 }}
               >
