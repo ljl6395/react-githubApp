@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styles from "./BatInput.less";
 
 class BatInput extends Component {
   state = {
@@ -85,7 +86,7 @@ class BatInput extends Component {
     };
 
     return (
-      <div style={{ flex: 1, marginTop: 20 }}>
+      <div className={styles.batInput}>
         <p style={{ fontSize: 24 }}>Player {player}</p>
         {data.login ? (
           <div

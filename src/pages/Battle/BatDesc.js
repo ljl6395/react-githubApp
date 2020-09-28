@@ -44,7 +44,7 @@ class BatDesc extends Component {
 
     return (
       <>
-        <section style={{ marginTop: 80 }}>
+        <section style={{ marginTop: 60 }}>
           <p style={{ textAlign: "center", fontSize: 30 }}>Instructions</p>
           <ul className={styles.instrUlStyle}>
             {instrList.map((item) => (
@@ -64,14 +64,14 @@ class BatDesc extends Component {
           </ul>
         </section>
 
-        <section style={{ marginTop: 80 }}>
+        <section style={{ marginTop: 60 }}>
           <p style={{ textAlign: "center", fontSize: 30 }}>Player</p>
           <ul className={styles.playerStyle}>
             <BatInput
               player="One"
               savePlayer={(data) => this.handleSave("One", data)}
             />
-            <div className={styles.playerDiv} />
+            {/* <div className={styles.playerDiv} /> */}
             <BatInput
               player="Two"
               savePlayer={(data) => this.handleSave("Two", data)}
