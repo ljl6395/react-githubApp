@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BatInput from "./components/BatInput";
+import styles from "./BatDesc.less";
 
 class BatDesc extends Component {
   state = {
@@ -23,43 +24,6 @@ class BatDesc extends Component {
   render() {
     const { dataOne, dataTwo } = this.state;
 
-    const instrUlStyle = {
-      maxWidth: 1000,
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-      margin: "0 auto",
-      marginTop: 30,
-    };
-    const instrLiStyle = {
-      height: 250,
-      width: 250,
-      background: "#ebebeb",
-      margin: "0 auto",
-      margin: "15px 0",
-      borderRadius: 5,
-      textAlign: "center",
-    };
-    const playerStyle = {
-      maxWidth: 1000,
-      margin: "0 auto",
-      display: "flex",
-      justifyContent: "space-between",
-      marginTop: 30,
-    };
-    const batBtnStyle = {
-      width: 180,
-      textAlign: "center",
-      margin: "0 auto",
-      background: "black",
-      color: "white",
-      fontSize: 20,
-      cursor: "pointer",
-      padding: 5,
-      borderRadius: 5,
-      marginTop: 15,
-    };
-
     const instrList = [
       {
         title: "Enter two github users",
@@ -80,15 +44,15 @@ class BatDesc extends Component {
 
     return (
       <>
-        <section style={{ marginTop: 60 }}>
+        <section style={{ marginTop: 80 }}>
           <p style={{ textAlign: "center", fontSize: 30 }}>Instructions</p>
-          <ul style={instrUlStyle}>
+          <ul className={styles.instrUlStyle}>
             {instrList.map((item) => (
               <li key={item.title} style={{ width: 260 }}>
                 <p style={{ textAlign: "center", fontSize: 24 }}>
                   {item.title}
                 </p>
-                <div style={instrLiStyle}>
+                <div className={styles.instrLiStyle}>
                   <i
                     className={item.icon}
                     aria-hidden="true"
@@ -100,21 +64,21 @@ class BatDesc extends Component {
           </ul>
         </section>
 
-        <section style={{ margin: "60px 0" }}>
+        <section style={{ marginTop: 80 }}>
           <p style={{ textAlign: "center", fontSize: 30 }}>Player</p>
-          <ul style={playerStyle}>
+          <ul className={styles.playerStyle}>
             <BatInput
               player="One"
               savePlayer={(data) => this.handleSave("One", data)}
             />
-            <div style={{ width: 20, height: 40 }} />
+            <div className={styles.playerDiv} />
             <BatInput
               player="Two"
               savePlayer={(data) => this.handleSave("Two", data)}
             />
           </ul>
           {dataOne.login && dataTwo.login && (
-            <div style={batBtnStyle}>
+            <div className={styles.batBtnStyle}>
               <Link
                 style={{ color: "white" }}
                 to={{

@@ -85,7 +85,7 @@ class BatInput extends Component {
     };
 
     return (
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, marginTop: 20 }}>
         <p style={{ fontSize: 24 }}>Player {player}</p>
         {data.login ? (
           <div

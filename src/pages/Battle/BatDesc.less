@@ -1,0 +1,73 @@
+.instrUlStyle {
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.instrLiStyle {
+  height: 250px;
+  width: 250px;
+  background: #ebebeb;
+  margin: 0 auto;
+  margin: 15px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.playerStyle {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.batBtnStyle {
+  width: 180px;
+  text-align: center;
+  margin: 0 auto;
+  background: black;
+  color: white;
+  font-size: 20;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.playerDiv {
+  width: 20px !important;
+  height: 40px;
+}
+
+@media screen and (max-width: 1400px) {
+  .instrUlStyle {
+    max-width: 1000px;
+  }
+
+  .playerStyle {
+    max-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .instrUlStyle {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  .playerStyle {
+    margin-left: 80px;
+    margin-right: 80px;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .playerDiv {
+    width: 0 !important;
+  }
+}
